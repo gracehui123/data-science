@@ -1,11 +1,12 @@
 import requests
 import pandas as pd
+import geopandas as gpd
 
 df = pd.read_csv("coordinates.csv")
 df = df.dropna(subset=["Lat", "Long"])
 
-start_date = "2026-09-24"
-end_date = "2026-10-07"
+start_date = "2025-09-24"
+end_date = "2025-10-11"
 results = []
 
 for index, row in df.iterrows():
@@ -35,9 +36,12 @@ for index, row in df.iterrows():
             "Min_Temp": daily["temperature_2m_min"][i],
             "HDD": round(max(0, 65 - avg_temp), 1),
             "CDD": round(max(0, avg_temp - 65), 1),
-            "Precipitation": daily["precipitation_sum"][i]
+            "Precipitation": daily["precipitation_sum"][i],
+            "Albers_x": row["albers_x"],
+            "Albers_y": row["albers_y"]
+
         })
 
 result_df = pd.DataFrame(results)
 
-result_df.to_csv("result.csv", index=False)
+result_df.to_csv("weather.csv", index=False)
