@@ -8,7 +8,7 @@ from shapely.geometry import Point, mapping
 
 df = pd.read_csv("coordinates.csv")
 
-folder = Path(__file__).resolve().parent / "data_sources"
+folder = Path(__file__).resolve().parent / "original_data"
 
 lake_placid_f = folder / "lake_placid_nlcd_tcc_conus_wgs84_v2025-6_20250101_20251231_5bf23954-a327-45a0-8b94-34e1277c6240.tiff"
 nyc_f = folder / "nyc_nlcd_tcc_conus_wgs84_v2025-6_20250101_20251231_49bca7e9-5509-422b-a5b7-b80ddb84c406.tiff"
